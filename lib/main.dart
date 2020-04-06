@@ -20,6 +20,7 @@ import 'package:sharing_codelab/model/photos_library_api_model.dart';
 import 'package:sharing_codelab/pages/home_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   final apiModel = PhotosLibraryApiModel();
   apiModel.signInSilently();
   runApp(
@@ -42,7 +43,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 
 ThemeData _buildTheme() {
   final ThemeData base = ThemeData.light();

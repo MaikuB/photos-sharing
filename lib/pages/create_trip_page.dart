@@ -66,7 +66,7 @@ class _CreateTripPageState extends State<CreateTripPage> {
                       ),
                       child: const Text(
                         'This will create a shared album in your Google Photos'
-                            ' account',
+                        ' account',
                         style: TextStyle(
                           color: Colors.grey,
                         ),
