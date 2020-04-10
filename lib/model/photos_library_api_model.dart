@@ -60,12 +60,11 @@ class PhotosLibraryApiModel extends Model {
   }
 
   Future<bool> signIn() async {
-    await _googleSignIn.signIn();
+    _currentUser = await _googleSignIn.signIn();
     if (_currentUser == null) {
       // User could not be signed in
       return false;
     }
-
     client = PhotosLibraryApiClient(_currentUser.authHeaders);
     updateAlbums();
     return true;
@@ -76,14 +75,15 @@ class PhotosLibraryApiModel extends Model {
     client = null;
   }
 
-  Future<void> signInSilently() async {
-    await _googleSignIn.signInSilently();
+  Future<bool> signInSilently() async {
+    _currentUser = await _googleSignIn.signInSilently();
     if (_currentUser == null) {
       // User could not be signed in
-      return;
+      return false;
     }
     client = PhotosLibraryApiClient(_currentUser.authHeaders);
     updateAlbums();
+    return true;
   }
 
   Future<Album> createAlbum(String title) async {
